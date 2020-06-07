@@ -1,0 +1,25 @@
+Write a program to prompt for a file name, and then read through
+the file and look for lines of the form:
+X-DSPAM-Confidence: 0.8475
+
+fhand = open('mbox-short.txt')
+count = 0
+lst = []
+
+for line in fhand:
+    line = line.rstrip()
+    if line.find('X-DSPAM-Confidence') == -1:
+        continue
+    count = count + 1
+    line = float(line.split(' ')[1])
+    lst.append(line)
+    print (line)
+print('there are',count, 'lines of target data')
+
+print(lst)
+
+num = 0
+for i in lst:
+    num = num + i
+
+print('the average of the list is :', num/len(lst))
