@@ -1,0 +1,24 @@
+#Exercise 9.7.2
+
+fhand = open('mbox-short.txt')
+count = 0
+d = dict()
+
+for line in fhand:
+    if line.startswith('From:'):
+        continue
+    elif line.startswith('From'):
+        line = line.split()
+        word = line[2]
+        d[word] = d.get(word,0)+1
+
+print(d)
+
+d_new = dict()
+
+lst = list(d.keys())
+
+for i in lst:
+    d_new[i] = d.get(i,0)
+
+print(d_new)
