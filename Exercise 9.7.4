@@ -1,0 +1,23 @@
+#Exercise 9.7.4
+
+fhand = open('mbox-short.txt')
+count = 0
+d = dict()
+
+for line in fhand:
+    if line.startswith('From:'):
+        continue
+    elif line.startswith('From'):
+        line = line.split()
+        word = line[1]
+        d[word] = d.get(word,0)+1
+
+print('the histogram is:', d)
+
+largest = None
+
+for word in d:
+    if largest is None or d[word]>largest:
+        largest = d.get(word,0)
+        sender = word
+print(sender, largest)
