@@ -1,0 +1,24 @@
+# 10.11 Exercise 1
+
+fhand = open('mbox.txt')
+domain = dict()
+email_count = list()
+
+for line in fhand:
+    line = line.rstrip()
+    if line.startswith("From:"):
+        continue
+    if line.startswith("From"):
+        words = line.split()
+        word = words[1]
+        domain[word] = domain.get(word,0) + 1
+
+talegram = list()
+
+for key, val in domain.items():
+    talegram.append((val,key))
+
+talegram.sort(reverse=True)
+
+for email, frequency in talegram[:5]:
+    print(email, frequency)
