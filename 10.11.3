@@ -1,0 +1,37 @@
+# 10.11 Exercise 3
+
+# Romeo does not have any number, but mail-box does.
+
+import string
+letter = dict()
+words = list()
+
+fhand = open('mbox.txt')
+
+for line in fhand:
+    line = line.rstrip().lower().translate(str.maketrans('','',string.punctuation))
+    line = line.translate(str.maketrans('','',string.digits))
+    line = line.split()
+    for word in line:
+        words.append(word)
+
+talegram = dict()
+
+for i in words:
+    for item in i:
+        talegram[item] = talegram.get(item,0) + 1
+
+output = list()
+
+for val,key in talegram.items():
+    output.append((val,key))
+
+output.sort(reverse=False)
+
+print('letter', 'frequency')
+
+for letter, frequency in output:
+    print('letter', frequency)
+
+fout = open('output.xlsx','w')
+fout.write(output)
