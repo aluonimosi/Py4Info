@@ -1,0 +1,27 @@
+# 10.11 Exercise 2
+
+fhand = open('mbox-short.txt')
+time_dict = dict()
+
+for line in fhand:
+    line = line.rstrip()
+    if line.startswith('From:'):
+        continue
+    if line.startswith('From'):
+        words = line.split()
+        full_time = words[5]
+        time = full_time[:2]
+        time_dict[time] = time_dict.get(time,0) + 1
+
+print(time_dict)
+
+talegram = list()
+
+for key, val in time_dict.items():
+    talegram.append((val,key))
+
+talegram.sort(reverse=True)
+
+print('frequency  hour')
+for frequency, hour in talegram:
+    print('   ', frequency,'    ', hour, '\n')
