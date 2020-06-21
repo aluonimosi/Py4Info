@@ -1,0 +1,19 @@
+# Exercise 11.9.2
+
+import re
+count = 0
+number = list()
+
+fhand = open('mbox.txt')
+
+for line in fhand:
+    line = line.rstrip()
+    x = re.findall('^New .*: ([0-9]+)', line)
+    if len(x)>0:
+        for num in x:
+            num = float(num)
+            number.append(num)
+            count = count + 1
+
+print(count)
+print(sum(number)/count)
