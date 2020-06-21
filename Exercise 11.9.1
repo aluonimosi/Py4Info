@@ -1,0 +1,15 @@
+# Exercise 11.9.1
+
+import re
+count = 0
+
+expression = input('Enter a regular expression: ')
+fhand = open('mbox.txt')
+
+for line in fhand:
+    line = line.rstrip()
+    x = re.findall(expression, line)
+    if len(x)>0:
+        count = count + 1
+
+print(count)
